@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home Session Mock Tests</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Sidebar Styles */
+    .sidebar {
+      height: 100vh;
+      width: 280px;
+      position: fixed;
+      top: 0;
+      left: -280px;
+      background-color: #169bcc;
+      color: white;
+      transition: 0.3s ease-in-out;
+      padding-top: 60px;
+      z-index: 999;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 500;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 25px;
+      text-decoration: none;
+      color: #ecf0f1;
+      font-size: 16px;
+      border-bottom: 1px solid #34495e;
+    }
+
+    .sidebar a:hover {
+      background-color: #34495e;
+    }
+
+    /* Overlay to close sidebar when clicked outside */
+    .overlay {
+      position: fixed;
+      display: none;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.4);
+      z-index: 998;
+    }
+
+    /* Sidebar toggle button */
+    .menu-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+      background-color: transparent;
+      border: none;
+      color: #2c3e50;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .main-container {
+      margin-left: 0;
+      transition: margin-left 0.3s ease-in-out;
+      padding: 60px 20px;
+    }
+
+    .sidebar.active ~ .main-container {
+      margin-left: 250px;
+    }
+
+    .site-title {
+      text-align: center;
+      margin-top: 0;
+      font-size: 28px;
+    }
+
+    .sub-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 20px;
+      color: #2c3e50;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .test-button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .test-button:hover {
+      background-color: #2980b9;
+    }
+
+    #usernamePlaceholder {
+      font-size: 21px; /* You can increase this number as needed */
+      font-weight: bold; /* Optional: to make it bolder */
+      margin-top: 20px;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Toggle Button -->
+  <span class="toggle-btn" onclick="toggleSidebar()" style="position: absolute; top: 20px; left: 20px; font-size: 28px; cursor: pointer; z-index: 1001;">☰</span>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h3 id="usernamePlaceholder">👤 Welcome, User</h3>
+    <a href="dashboard.html">Home</a>
+    <a href="score-history.html">Results</a> <!-- Future results page -->
+    <div class="bottom-button">
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <h1 class="site-title">BBA CET Mock Test</h1>
+    <h2 class="sub-title">Choose Your Test</h2>
+
+    <div class="button-container">
+      <a href="english-test.html" class="test-button">English Test</a>
+      <a href="aptitude-test.html" class="test-button">Aptitude Test</a>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    function toggleSidebar() {
+      sidebar.classList.toggle("active");
+
+      // Toggle overlay display as well
+      if (sidebar.classList.contains("active")) {
+        overlay.style.display = "block";
+      } else {
+        overlay.style.display = "none";
+      }
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove("active");
+      overlay.style.display = "none";
+    }
+
+    // Optional: ESC key to close sidebar
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSidebar();
+    });
+  </script>
+
+  <script>
+    const storedName = localStorage.getItem("username");
+    if (storedName) {
+      document.getElementById("usernamePlaceholder").innerText = `👤 Hi, ${storedName}`;
+    }
+  </script>
+</body>
+
+</html>
