@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="login-style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h1 class="site-title">TestXpress</h1>
+    <h2>🔐 Login</h2>
+
+    <form id="loginForm">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="tel" id="phone" placeholder="Phone Number" maxlength="10" required pattern="[0-9]{10}" title="Enter 10-digit phone number" />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+
+        fetch(`https://script.google.com/macros/s/AKfycbzp3I1BFXqCtNrAbBaK3g0Fo-yL61aicGYmjw6WvlUOq6zEGlR6AupCTQ37NJn23krecA/exec?name=${name}&phone=${phone}`)
+        .then(res => res.text())
+        .then(result => {
+            if (result === "success") {
+            localStorage.setItem("username", name);  // used for dashboard greeting
+            alert("✅ Login Successful!");
+            window.location.href = "dashboard.html";
+            } else {
+            alert("❌ User not found. Please register first.");
+            }
+        });
+     });
+    </script>
+
+</body>
+</html>
