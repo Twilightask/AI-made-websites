@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="login-style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h1 class="site-title">TestXpress</h1>
+    <h2>🔐 Login</h2>
+
+    <form id="loginForm">
+      <input type="text" id="firstName" placeholder="First Name" required />
+      <input type="text" id="lastName" placeholder="Last Name" required />
+      <input type="tel" id="phone" placeholder="Phone Number" maxlength="10" required pattern="[0-9]{10}" title="Enter 10-digit phone number" />
+      <button type="submit">Login</button>
+    </form>
+
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+      fetch(`https://script.google.com/macros/s/AKfycbzp3I1BFXqCtNrAbBaK3g0Fo-yL61aicGYmjw6WvlUOq6zEGlR6AupCTQ37NJn23krecA/exec?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&phone=${phone}`)
+        .then(res => res.text())
+        .then(result => {
+          if (result === "success") {
+            localStorage.setItem("username", firstName + " " + lastName);
+            alert("✅ Login Successful!");
+            window.location.href = "dashboard.html";
+          } else {
+            alert("❌ User not found. Please register first.");
+          }
+        });
+    });
+  </script>
+
+
+</body>
+</html>
