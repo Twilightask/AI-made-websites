@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GK Mock Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #3498db, #2ecc71);
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .question {
+      margin-bottom: 35px;
+    }
+
+    .question h3 {
+      margin-bottom: 12px;
+    }
+
+    .options label {
+      display: block;
+      margin: 10px 0;
+      padding: 12px 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #f9f9f9;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .options input[type="radio"] {
+      display: none;
+    }
+
+    .options label:hover {
+      background-color: #e8f5e9;
+      border-color: #2ecc71;
+    }
+
+    .options input[type="radio"]:checked + label {
+      background-color: #2ecc71;
+      color: white;
+      border-color: #27ae60;
+    }
+
+    .report {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .report a {
+      color: red;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    #timer {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: #ffffff;
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 40px auto 10px;
+      padding: 12px 30px;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #27ae60;
+    }
+
+    .blurred {
+      filter: blur(5px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .blurred::after {
+      content: "⚠️ Screen capture or switching tabs is not allowed.";
+      position: fixed;
+      top: 40%;
+      left: 10%;
+      right: 10%;
+      text-align: center;
+      color: red;
+      font-size: 24px;
+      font-weight: bold;
+      background: white;
+      padding: 20px;
+      border: 2px solid red;
+      z-index: 9999;
+    }
+
+    .watermark {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      color: rgba(253, 253, 253, 0.3);
+      font-size: 12px;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="timer">30:00</div>
+  <div class="watermark">👤 Name: <span id="wmName">User</span> | 🕒 <span id="wmTime"></span></div>
+
+
+  <div class="container">
+    <h1>GK Mock Test</h1>
+
+  <!-- Question 1 -->
+  <div class="question">
+    <h3>1. Who is the CEO of Amazon as of 2024?</h3>
+    <div class="options">
+      <input type="radio" id="q1a" name="q1"><label for="q1a">Andy Jassy</label>
+      <input type="radio" id="q1b" name="q1"><label for="q1b">Sundar Pichai</label>
+      <input type="radio" id="q1c" name="q1"><label for="q1c">Tim Cook</label>
+      <input type="radio" id="q1d" name="q1"><label for="q1d">Satya Nadella</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 2 -->
+  <div class="question">
+    <h3>2. What is the capital of Mizoram?</h3>
+    <div class="options">
+      <input type="radio" id="q2a" name="q2"><label for="q2a">Aizawl</label>
+      <input type="radio" id="q2b" name="q2"><label for="q2b">Itanagar</label>
+      <input type="radio" id="q2c" name="q2"><label for="q2c">Shillong</label>
+      <input type="radio" id="q2d" name="q2"><label for="q2d">Agartala</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 3 -->
+  <div class="question">
+    <h3>3. What does the term “Budget” refer to?</h3>
+    <div class="options">
+      <input type="radio" id="q3a" name="q3"><label for="q3a">Estimate of revenue and expenditure</label>
+      <input type="radio" id="q3b" name="q3"><label for="q3b">Only expenses of government</label>
+      <input type="radio" id="q3c" name="q3"><label for="q3c">Only income of government</label>
+      <input type="radio" id="q3d" name="q3"><label for="q3d">None of these</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 4 -->
+  <div class="question">
+    <h3>4. Who founded Infosys?</h3>
+    <div class="options">
+      <input type="radio" id="q4a" name="q4"><label for="q4a">Narayana Murthy</label>
+      <input type="radio" id="q4b" name="q4"><label for="q4b">Azim Premji</label>
+      <input type="radio" id="q4c" name="q4"><label for="q4c">Ratan Tata</label>
+      <input type="radio" id="q4d" name="q4"><label for="q4d">Mukesh Ambani</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 5 -->
+  <div class="question">
+    <h3>5. What is the national anthem of India?</h3>
+    <div class="options">
+      <input type="radio" id="q5a" name="q5"><label for="q5a">Jana Gana Mana</label>
+      <input type="radio" id="q5b" name="q5"><label for="q5b">Vande Mataram</label>
+      <input type="radio" id="q5c" name="q5"><label for="q5c">Sare Jahan Se Achha</label>
+      <input type="radio" id="q5d" name="q5"><label for="q5d">None of these</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+    <!-- Question 6 -->
+  <div class="question">
+    <h3>6. What is the name of the national flag of India?</h3>
+    <div class="options">
+      <input type="radio" id="q6a" name="q6"><label for="q6a">Tiranga</label>
+      <input type="radio" id="q6b" name="q6"><label for="q6b">Ashok Chakra</label>
+      <input type="radio" id="q6c" name="q6"><label for="q6c">Hindustan</label>
+      <input type="radio" id="q6d" name="q6"><label for="q6d">Saffron Flag</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 7 -->
+  <div class="question">
+    <h3>7. Who is the CEO of Google as of 2024?</h3>
+    <div class="options">
+      <input type="radio" id="q7a" name="q7"><label for="q7a">Satya Nadella</label>
+      <input type="radio" id="q7b" name="q7"><label for="q7b">Andy Jassy</label>
+      <input type="radio" id="q7c" name="q7"><label for="q7c">Sundar Pichai</label>
+      <input type="radio" id="q7d" name="q7"><label for="q7d">Tim Cook</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 8 -->
+  <div class="question">
+    <h3>8. GST in India stands for?</h3>
+    <div class="options">
+      <input type="radio" id="q8a" name="q8"><label for="q8a">Goods and Services Tax</label>
+      <input type="radio" id="q8b" name="q8"><label for="q8b">Government Sale Tax</label>
+      <input type="radio" id="q8c" name="q8"><label for="q8c">General Service Tax</label>
+      <input type="radio" id="q8d" name="q8"><label for="q8d">None of the above</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 9 -->
+  <div class="question">
+    <h3>9. Who is the chairman of Tata Group (2024)?</h3>
+    <div class="options">
+      <input type="radio" id="q9a" name="q9"><label for="q9a">Ratan Tata</label>
+      <input type="radio" id="q9b" name="q9"><label for="q9b">Cyrus Mistry</label>
+      <input type="radio" id="q9c" name="q9"><label for="q9c">N. Chandrasekaran</label>
+      <input type="radio" id="q9d" name="q9"><label for="q9d">Mukesh Ambani</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 10 -->
+  <div class="question">
+    <h3>10. What is the capital of Uttarakhand?</h3>
+    <div class="options">
+      <input type="radio" id="q10a" name="q10"><label for="q10a">Dehradun</label>
+      <input type="radio" id="q10b" name="q10"><label for="q10b">Shimla</label>
+      <input type="radio" id="q10c" name="q10"><label for="q10c">Ranchi</label>
+      <input type="radio" id="q10d" name="q10"><label for="q10d">Gangtok</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 11 -->
+  <div class="question">
+    <h3>11. Where is the Gateway of India located?</h3>
+    <div class="options">
+      <input type="radio" id="q11a" name="q11"><label for="q11a">Delhi</label>
+      <input type="radio" id="q11b" name="q11"><label for="q11b">Mumbai</label>
+      <input type="radio" id="q11c" name="q11"><label for="q11c">Chennai</label>
+      <input type="radio" id="q11d" name="q11"><label for="q11d">Kolkata</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 12 -->
+  <div class="question">
+    <h3>12. Which Indian company is headed by Mukesh Ambani?</h3>
+    <div class="options">
+      <input type="radio" id="q12a" name="q12"><label for="q12a">TCS</label>
+      <input type="radio" id="q12b" name="q12"><label for="q12b">Infosys</label>
+      <input type="radio" id="q12c" name="q12"><label for="q12c">Reliance Industries</label>
+      <input type="radio" id="q12d" name="q12"><label for="q12d">Wipro</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 13 -->
+  <div class="question">
+    <h3>13. The Ashoka Chakra has how many spokes?</h3>
+    <div class="options">
+      <input type="radio" id="q13a" name="q13"><label for="q13a">20</label>
+      <input type="radio" id="q13b" name="q13"><label for="q13b">18</label>
+      <input type="radio" id="q13c" name="q13"><label for="q13c">24</label>
+      <input type="radio" id="q13d" name="q13"><label for="q13d">30</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 14 -->
+  <div class="question">
+    <h3>14. Who is the current Finance Minister of India? (2024)</h3>
+    <div class="options">
+      <input type="radio" id="q14a" name="q14"><label for="q14a">Rajnath Singh</label>
+      <input type="radio" id="q14b" name="q14"><label for="q14b">Amit Shah</label>
+      <input type="radio" id="q14c" name="q14"><label for="q14c">Nirmala Sitharaman</label>
+      <input type="radio" id="q14d" name="q14"><label for="q14d">Smriti Irani</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 15 -->
+  <div class="question">
+    <h3>15. Which monument is known as the symbol of love?</h3>
+    <div class="options">
+      <input type="radio" id="q15a" name="q15"><label for="q15a">Qutub Minar</label>
+      <input type="radio" id="q15b" name="q15"><label for="q15b">Red Fort</label>
+      <input type="radio" id="q15c" name="q15"><label for="q15c">Taj Mahal</label>
+      <input type="radio" id="q15d" name="q15"><label for="q15d">India Gate</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 16 -->
+  <div class="question">
+    <h3>16. Which organization regulates banking in India?</h3>
+    <div class="options">
+      <input type="radio" id="q16a" name="q16"><label for="q16a">SEBI</label>
+      <input type="radio" id="q16b" name="q16"><label for="q16b">RBI</label>
+      <input type="radio" id="q16c" name="q16"><label for="q16c">IRDAI</label>
+      <input type="radio" id="q16d" name="q16"><label for="q16d">NITI Aayog</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 17 -->
+  <div class="question">
+    <h3>17. Who is the founder of SpaceX?</h3>
+    <div class="options">
+      <input type="radio" id="q17a" name="q17"><label for="q17a">Mark Zuckerberg</label>
+      <input type="radio" id="q17b" name="q17"><label for="q17b">Jeff Bezos</label>
+      <input type="radio" id="q17c" name="q17"><label for="q17c">Elon Musk</label>
+      <input type="radio" id="q17d" name="q17"><label for="q17d">Larry Page</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 18 -->
+  <div class="question">
+    <h3>18. Who is known as the 'Missile Man of India'?</h3>
+    <div class="options">
+      <input type="radio" id="q18a" name="q18"><label for="q18a">C.V. Raman</label>
+      <input type="radio" id="q18b" name="q18"><label for="q18b">Dr. A.P.J. Abdul Kalam</label>
+      <input type="radio" id="q18c" name="q18"><label for="q18c">Vikram Sarabhai</label>
+      <input type="radio" id="q18d" name="q18"><label for="q18d">K. Sivan</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 19 -->
+  <div class="question">
+    <h3>19. Budget is presented in Parliament by?</h3>
+    <div class="options">
+      <input type="radio" id="q19a" name="q19"><label for="q19a">President</label>
+      <input type="radio" id="q19b" name="q19"><label for="q19b">Finance Minister</label>
+      <input type="radio" id="q19c" name="q19"><label for="q19c">Prime Minister</label>
+      <input type="radio" id="q19d" name="q19"><label for="q19d">Chief Minister</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+  <!-- Question 20 -->
+  <div class="question">
+    <h3>20. Which country hosted the G20 Summit in 2023?</h3>
+    <div class="options">
+      <input type="radio" id="q20a" name="q20"><label for="q20a">India</label>
+      <input type="radio" id="q20b" name="q20"><label for="q20b">USA</label>
+      <input type="radio" id="q20c" name="q20"><label for="q20c">Japan</label>
+      <input type="radio" id="q20d" name="q20"><label for="q20d">France</label>
+    </div>
+    <div class="report">🚩 <a href="#">Report this question</a></div>
+  </div>
+
+
+  <!-- ✅ SUBMIT BUTTON -->
+  <button class="submit-btn" onclick="submitTest()">SUBMIT</button>
+</div>
+
+<script>
+    // ✅ Store test name for retry logic
+  localStorage.setItem("currentTest", "gk");
+  const testStartTime = new Date(); // ✅ Define start time for duration calc
+  let timeLeft = 1800;
+  const timerDisplay = document.getElementById("timer");
+
+  function updateTimer() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerDisplay.textContent =
+      (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    if (timeLeft > 0) {
+      timeLeft--;
+      setTimeout(updateTimer, 1000);
+    } else {
+      alert("⏰ Time's up!");
+      submitTest();
+    }
+  }
+
+  updateTimer();
+
+  const correctAnswers = {
+    q1: "q1c",
+    q2: "q2b",
+    q3: "q3d",
+    q4: "q4a",
+    q5: "q5d",
+    q6: "q6a",
+    q7: "q7c",
+    q8: "q8a",
+    q9: "q9c",
+    q10: "q10a",
+    q11: "q11b",
+    q12: "q12c",
+    q13: "q13c",
+    q14: "q14c",
+    q15: "q15c",
+    q16: "q16b",
+    q17: "q17c",
+    q18: "q18b",
+    q19: "q19b",
+    q20: "q20a"
+  };
+
+  function submitTest() {
+    let score = 0;
+    const userAnswers = {};
+
+    for (let q = 1; q <= 20; q++) {
+      const selected = document.querySelector(`input[name="q${q}"]:checked`);
+      if (selected) {
+        userAnswers[`q${q}`] = selected.id;
+        if (selected.id === correctAnswers[`q${q}`]) {
+          score++;
+        }
+      } else {
+        userAnswers[`q${q}`] = null;
+      }
+    }
+
+    const testEndTime = new Date();
+    const secondsTaken = Math.floor((testEndTime - testStartTime) / 1000);
+    const formattedTime = `${Math.floor(secondsTaken / 60)} min ${secondsTaken % 60} sec`;
+
+    const testResult = {
+      testName: "GK Test",
+      date: new Date().toLocaleDateString(),
+      timeTaken: formattedTime,
+      score: score,
+      outOf: 20
+    };
+
+    let storedResults = JSON.parse(localStorage.getItem("testResults")) || [];
+    storedResults.unshift(testResult);
+    localStorage.setItem("testResults", JSON.stringify(storedResults));
+
+    localStorage.setItem("score", score);
+    localStorage.setItem("outOf", 20);
+    localStorage.setItem("timeTaken", formattedTime);
+    localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
+    localStorage.setItem("correctAnswers", JSON.stringify(correctAnswers));
+
+    window.location.href = "result.html";
+  }
+
+  // ✅ Button click event
+  window.onload = function () {
+    document.querySelector(".submit-btn").addEventListener("click", submitTest);
+  };
+
+  // Tab Switch Detection Logic  -- Security features below
+    let switchCount = 0;
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          switchCount++;
+
+          if (switchCount === 1) {
+            alert("⚠️ Warning: Do not switch tabs or minimize! Next time, the test will end.");
+          } else {
+            alert("❌ You switched tabs again. Test is terminated.");
+          window.location.href = "result.html";
+        }
+      }
+    });  
+    
+    // Disable right-click
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      alert("🚫 Right-click is disabled during the test.");
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+        alert("🚫 Copying (Ctrl + C) is disabled during the test.");
+      }
+    });
+     
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+        e.preventDefault();
+        alert("🚫 Viewing source code (Ctrl + U) is disabled.");
+      }
+    });
+
+    // ⌨️ Block developer tools, view source, copy
+    document.addEventListener('keydown', function (e) {
+      const key = e.key.toLowerCase();
+
+      if (
+        (e.ctrlKey && key === 'c') || // Ctrl + C
+        (e.ctrlKey && key === 'u') || // Ctrl + U
+        (e.key === 'F12') ||          // F12
+        (e.ctrlKey && e.shiftKey && key === 'i') || // Ctrl + Shift + I
+        (e.ctrlKey && e.shiftKey && key === 'j')    // Ctrl + Shift + J
+      ) {
+        e.preventDefault();
+        alert("🚫 This action is disabled during the test.");
+      }
+    });
+
+        // Screen blur and tab-switch logic
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        document.body.classList.add("blurred");
+      } else {
+        document.body.classList.remove("blurred");
+      }
+    });
+
+    // Watermark name & time
+    document.addEventListener('DOMContentLoaded', () => {
+      const name = localStorage.getItem("username") || "User";
+      document.getElementById("wmName").innerText = name;
+
+      const updateTime = () => {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        document.getElementById("wmTime").innerText = timeString;
+      };
+
+      updateTime();
+      setInterval(updateTime, 60000); // update every 1 min
+    });
+  </script>
+
+</body>
+</html>

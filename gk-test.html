@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>General Konwledge Mock Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #3498db, #2ecc71);
+      color: black;
+    }
+
+    .page-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #fefefe;
+    }
+
+    .section-box {
+      background-color: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-box h3 {
+      font-size: 24px;  
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .section-box p,
+    .section-box li {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .section-box ul {
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+
+    .start-test {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .start-test input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 220px;
+      margin-right: 10px;
+    }
+
+    .start-test button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      background-color: grey;
+      color: white;
+      cursor: not-allowed;
+      transition: background-color 0.3s;
+    }
+
+    .start-test button.enabled {
+      background-color: #27ae60;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      height: 100vh;
+      width: 280px;
+      position: fixed;
+      top: 0;
+      left: -280px;
+      background-color: #169bcc;
+      color: white;
+      transition: 0.3s ease-in-out;
+      padding-top: 60px;
+      z-index: 999;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 500;
+      font-size: 21px;
+      color: #ffffff;
+      margin-top: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 25px;
+      text-decoration: none;
+      color: #ecf0f1;
+      font-size: 16px;
+      border-bottom: 1px solid #34495e;
+    }
+
+    .sidebar a:hover {
+      background-color: #34495e;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 24px;
+      background-color: #169bcc;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .overlay {
+      position: fixed;
+      display: none;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 998;
+    }
+
+  </style>
+</head>
+<body>
+  <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
+
+  <div class="sidebar" id="sidebar">
+    <h3 id="usernamePlaceholder">👤 Hi, User</h3>
+    <a href="dashboard.html">Home</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="score-history.html">Results</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="settings.html">Settings</a>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <div class="page-container">
+    <h1>GK Mock Test</h1>
+
+    <!-- Student Info -->
+    <div class="section-box">
+      <p><strong>Name:</strong> <span id="displayName"></span></p>
+      <p><strong>Std:</strong> <span id="displayStd"></span></p>
+      <p><strong>College:</strong> <span id="displayCollege"></span></p>
+      <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
+    </div>
+
+    <!-- English Syllabus -->
+    <div class="section-box">
+      <h3>📘 GK Test 1 Syllabus</h3>
+      <ul>
+        <li>Major Recent National Events (Last 6 Months)</li>
+        <li>Famous Personalities in News</li>
+        <li>Important National Symbols</li>
+        <li>States & Their Capitals</li>
+        <li>CEOs of Famous Global Brands</li>
+        <li>Basic Economic Terms</li>
+        <li>Top Indian Companies</li>
+      </ul>
+    </div>
+
+    <!-- Test Rules -->
+    <div class="section-box">
+      <h3>📌 Test Rules</h3>
+      <ul>
+        <li>Test Duration: 30 minutes</li>
+        <li>Do not refresh or switch tabs</li>
+        <li>Strictly no cheating or external help</li>
+        <li>You cannot pause or restart the test</li>
+        <li>Auto saving is disabled by default</li>
+      </ul>
+    </div>
+
+    <!-- Start Test Section -->
+    <div class="start-test">
+      <input type="text" id="startInput" placeholder="Type 'start' to begin" />
+      <button id="startBtn" disabled>Start Test</button>
+    </div>
+  </div>
+
+  <script>
+    // Show registered user data
+    document.getElementById("displayName").innerText = localStorage.getItem("firstName") + " " + localStorage.getItem("lastName");
+    document.getElementById("displayStd").innerText = localStorage.getItem("std");
+    document.getElementById("displayCollege").innerText = localStorage.getItem("college") || "N/A";
+    document.getElementById("displayPhone").innerText = localStorage.getItem("phone");
+
+    const input = document.getElementById('startInput');
+    const button = document.getElementById('startBtn');
+
+    input.addEventListener('input', () => {
+      if (input.value.trim().toLowerCase() === 'start') {
+        button.disabled = false;
+        button.classList.add('enabled');
+      } else {
+        button.disabled = true;
+        button.classList.remove('enabled');
+      }
+    });
+
+    button.addEventListener('click', () => {
+      if (!button.disabled) {
+        // 🔒 Request Fullscreen
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen(); // Safari
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen(); // IE/Edge
+        }
+
+        // ✅ Navigate to questions page
+        window.location.href = 'gk-questions.html';
+      }
+    });
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    function toggleSidebar() {
+      sidebar.classList.toggle("active");
+      overlay.style.display = sidebar.classList.contains("active") ? "block" : "none";
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove("active");
+      overlay.style.display = "none";
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSidebar();
+    });
+
+    const storedName = localStorage.getItem("username");
+    if (storedName) {
+      document.getElementById("usernamePlaceholder").innerText = `👤 Hi, ${storedName}`;
+    }
+
+  </script>
+
+</body>
+</html>
